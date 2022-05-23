@@ -15,21 +15,27 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: consults-service
-        uri: http://localhost:8001
+      - id: micro1
+        uri: http://localhost:8022
+        predicates:
+          - Path=/client/**
+        filters:
+          - StripPrefix=1
+      - id: micro2
+        uri: http://localhost:8023
+        predicates:
+          - Path=/transaction/**
+        filters:
+          - StripPrefix=1
+      - id: micro3
+        uri: http://localhost:8092
         predicates:
           - Path=/consults/**
         filters:
           - StripPrefix=1
-      - id: createProduct-service
-        uri: http://localhost:8002
+      - id: micro4
+        uri: http://localhost:8092
         predicates:
-          - Path=/createProduct/**
-        filters:
-          - StripPrefix=1
-      - id: createTransaction-service
-        uri: http://localhost:8003
-        predicates:
-          - Path=/createTransaction/**
+          - Path=/bankingInquiries/**
         filters:
           - StripPrefix=1

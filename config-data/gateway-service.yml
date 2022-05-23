@@ -34,7 +34,7 @@ spring:
         filters:
           - StripPrefix=1
       - id: micro4
-        uri: http://localhost:8092
+        uri: http://localhost:8093
         predicates:
           - Path=/bankingInquiries/**
         filters:

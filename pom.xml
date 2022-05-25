@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
+		<checkstyle.version>7.1.2</checkstyle.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -55,7 +57,44 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
-	</build>
+			 <plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-checkstyle-plugin</artifactId>
+			   <version>3.1.2</version>
+			   <configuration>
+			     <configLocation>checkstyle.xml</configLocation>
+			     <encoding>UTF-8</encoding>
+			     <consoleOutput>true</consoleOutput>
+			     <failsOnError>false</failsOnError>
+			     <linkXRef>false</linkXRef>
+			   </configuration>
+			   <executions>
+			     <execution>
+			       <id>validate</id>
+			       <phase>validate</phase>
+			       <goals>
+			         <goal>check</goal>
+			       </goals>
+			     </execution>
+			   </executions>
+			 </plugin>
+   		 </plugins>
+	</build>		
+   <reporting>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.2</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>
+        </plugin>
+      </plugins>
+    </reporting>
 
 </project>

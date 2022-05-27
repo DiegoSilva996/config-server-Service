@@ -18,7 +18,10 @@
 		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
 		<checkstyle.version>7.1.2</checkstyle.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
+		<docker.image.prefix>dsilvatru96.azurecr.io</docker.image.prefix>
+		<jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -51,9 +54,9 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<build>
+	 <build>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -77,10 +80,23 @@
 			       </goals>
 			     </execution>
 			   </executions>
+			 </plugin> -->
+			 <plugin>
+				<artifactId>jib-maven-plugin</artifactId>
+				<groupId>com.google.cloud.tools</groupId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<from>
+					<image>mcr.microsoft.com/java/jdk:8-zulu-alpine</image>
+					</from>
+					<to>
+					<image>${docker.image.prefix}/${project.artifactId}</image>
+					</to>
+				</configuration>
 			 </plugin>
    		 </plugins>
 	</build>		
-   <reporting>
+  <!-- <reporting>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -95,6 +111,6 @@
           </reportSets>
         </plugin>
       </plugins>
-    </reporting>
+    </reporting>-->
 
 </project>

@@ -28,14 +28,8 @@ spring:
         filters:
           - StripPrefix=1
       - id: micro3
-        uri: http://localhost:8092
-        predicates:
-          - Path=/consults/**
-        filters:
-          - StripPrefix=1
-      - id: micro4
         uri: http://localhost:8093
         predicates:
-          - Path=/bankingInquiries/**
+          - Path=/consults/**
         filters:
           - StripPrefix=1

@@ -56,7 +56,7 @@
 
 	 <build>
 		<plugins>
-			<!--<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -69,6 +69,8 @@
 			     <encoding>UTF-8</encoding>
 			     <consoleOutput>true</consoleOutput>
 			     <failsOnError>false</failsOnError>
+			     <failOnViolation>false</failOnViolation>
+			     <violationSeverity>warning</violationSeverity>
 			     <linkXRef>false</linkXRef>
 			   </configuration>
 			   <executions>
@@ -80,7 +82,7 @@
 			       </goals>
 			     </execution>
 			   </executions>
-			 </plugin> -->
+			 </plugin> 
 			 <plugin>
 				<artifactId>jib-maven-plugin</artifactId>
 				<groupId>com.google.cloud.tools</groupId>
@@ -94,9 +96,24 @@
 					</to>
 				</configuration>
 			 </plugin>
+						 <plugin>
+			      <!-- Build an executable JAR -->
+			      <groupId>org.apache.maven.plugins</groupId>
+			      <artifactId>maven-jar-plugin</artifactId>
+			      <version>3.2.2</version>
+			      <configuration>
+			        <archive>
+			          <manifest>
+			            <addClasspath>true</addClasspath>
+			            <classpathPrefix>lib/</classpathPrefix>
+			            <mainClass>com.formacionbdi.sprongboot.app.zuul.SpringbootConfigServerApplication</mainClass>
+			          </manifest>
+			        </archive>
+			      </configuration>
+			    </plugin>
    		 </plugins>
 	</build>		
-  <!-- <reporting>
+  <reporting>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -111,6 +128,5 @@
           </reportSets>
         </plugin>
       </plugins>
-    </reporting>-->
-
+    </reporting>
 </project>

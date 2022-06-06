@@ -18,7 +18,7 @@ spring:
       - id: micro1
         uri: http://localhost:8022
         predicates:
-          - Path=/client/**
+          - Path=/product/**
         filters:
           - StripPrefix=1
       - id: micro2
